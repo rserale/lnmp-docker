@@ -1,4 +1,4 @@
-web:
+nginx:
     build: lnmp-nginx
     ports:
         - "80:80"
