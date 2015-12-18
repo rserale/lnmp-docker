@@ -1,4 +1,15 @@
-nginx:
+web:
+    # this container will be created from our image 'lnmp-nginx', thus we have to build it from the homonym directory
     build: lnmp-nginx
+    # we're exposing here the port 80 to the host, since it's the only service meant to be accessible from the host
     ports:
         - "80:80"
+    # we link this container to the 'backend' one, then our nginx can use php5-fpm on port 9000
+    links:
+        - backend
+
+backend:
+    build: lnmp-php-fpm
+    # we're exposing the port 9000, which will be accessible only by the other linked services (in this case, 'web')
+    expose:
+        - 9000
