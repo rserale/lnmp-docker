@@ -7,6 +7,8 @@ web:
     # we link this container to the 'backend' one, then our nginx can use php5-fpm on port 9000
     links:
         - backend
+    volumes:
+        - ./code/:/usr/share/nginx/html:ro
 
 backend:
     build: lnmp-php-fpm
